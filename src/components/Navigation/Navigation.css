@@ -1,0 +1,24 @@
+nav {
+  background-color: rgb(101, 96, 96);
+  display: flex;
+  justify-content: center;
+  height: 7vh;
+  padding: 10px;
+}
+
+.spy {
+  color: white;
+  height: 2em;
+  margin: 6px;
+  margin-right: 10px;
+  opacity: 0.5;
+}
+
+input {
+  font: inherit;
+  height: 100%;
+  font-size: 1.5rem;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  box-shadow: 1px, 1px;
+}

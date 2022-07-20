@@ -34,55 +34,12 @@ const App = () => {
     return degF;
   };
 
-  // const dailyTempFetch = (latitude) => {
-  //   const dailyTempFetch = fetch(
-  //     `https://api.openweathermap.org/data/2.5/weather?lat=33.4484&lon=-112.0740&appid=a38108866a4d31a76f65d9a4f2fa9664
-  //       `
-  //   // ).then((response) => response.json());
-  //   const fiveDayFetch = fetch(
-  //     // `https://api.openweathermap.org/data/2.5/forecast?lat=33.4484&lon=-112.0740&appid=a38108866a4d31a76f65d9a4f2fa9664`
-  //   // ).then((response) => response.json());
-
-  //   const allData = Promise.all([dailyTempFetch, fiveDayFetch]).then((res) => {
-  //     setCurrTemp(tempF(res[0].main.temp));
-  //     setCity(res[0].name);
-  //     setMax(tempF(res[0].main.temp_max));
-  //     setMin(tempF(res[0].main.temp_min));
-  //     setSunrise(res[0].sys.sunrise);
-  //     setSunset(res[0].sys.sunset);
-  //     setCloudGif(res[0].weather[0].main);
-  //     setWind(res[0].wind.speed);
-  //     setHumidity(res[0].main.humidity);
-  //     sortAPIForcastArr(res[1].list);
-  //   });
-  //   console.log("happened");
-  // };
-
-  // async function loadDailyTemp() {
-  //   const getLat = async () => {
-  //     await navigator.geolocation.getCurrentPosition(
-  //       function onSuccess(position) {
-  //         const latitude = position.coords.latitude;
-  //         console.log(latitude);
-  //         dailyTempFetch(latitude);
-
-  //         // const latitude = position.coords.latitude
-  //         // const longitude = position.coords.longitude
-  //       },
-  //       function onError(error) {
-  //         console.log("error");
-  //       }
-  //     );
-  //   };
-  //   const latitude = getLat();
-  // }
-  // loadDailyTemp();
-
   const sortAPIForcastArr = (arr) => {
     const weeklyArr = [];
     for (let i = 0; i < arr.length; i += 8) {
       let highLowObj = {
         avgTemp: tempF(arr[i].main.temp),
+        gif: arr[i].weather[0].main,
       };
       weeklyArr.push(highLowObj);
     }
@@ -98,6 +55,7 @@ const App = () => {
       const fiveDayFetch = fetch(
         `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${openKey}`
       ).then((response) => response.json());
+      console.log(cloudGif);
 
       const allData = Promise.all([dailyTempFetch, fiveDayFetch]).then(
         (res) => {
@@ -124,12 +82,9 @@ const App = () => {
             const longitude = position.coords.longitude;
             console.log(latitude, longitude);
             dailyTempFetch(latitude, longitude);
-
-            // const latitude = position.coords.latitude
-            // const longitude = position.coords.longitude
           },
           function onError(error) {
-            console.log("error");
+            console.log("error:", error);
           }
         );
       };
@@ -148,7 +103,7 @@ const App = () => {
     //   const options = {
     //     method: "GET",
     //     headers: {
-    //       "X-RapidAPI-Key": "c3ce7eb6abmsha60f52485bc4152p19c018jsn0ee12ea33502",
+    //       "X-RapidAPI-Key": "process.env.c3ce7eb6abmsha60f52485bc4152p19c018jsn0ee12ea33502",
     //       "X-RapidAPI-Host": "spott.p.rapidapi.com",
     //     },
     //   };
@@ -159,32 +114,6 @@ const App = () => {
     //     .then((response) => response.json())
     //     .then((response) => console.log(response))
     //     .catch((err) => console.error(err));
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //     "X-RapidAPI-Key": `${process.env.REACT_APP_API_WEATHER_KEY}`,
-    //     "X-RapidAPI-Host": "aerisweather1.p.rapidapi.com",
-    //   },
-    // };
-    // const dailyTempFetch = fetch(
-    //   `https://api.openweathermap.org/data/2.5/weather?lat=33.4484&lon=-112.0740&appid=a38108866a4d31a76f65d9a4f2fa9664
-    //     `
-    // ).then((response) => response.json());
-    // const fiveDayFetch = fetch(
-    //   `https://api.openweathermap.org/data/2.5/forecast?lat=33.4484&lon=-112.0740&appid=a38108866a4d31a76f65d9a4f2fa9664`
-    // ).then((response) => response.json());
-    // const allData = Promise.all([dailyTempFetch, fiveDayFetch]).then((res) => {
-    //   setCurrTemp(tempF(res[0].main.temp));
-    //   setCity(res[0].name);
-    //   setMax(tempF(res[0].main.temp_max));
-    //   setMin(tempF(res[0].main.temp_min));
-    //   setSunrise(res[0].sys.sunrise);
-    //   setSunset(res[0].sys.sunset);
-    //   setCloudGif(res[0].weather[0].main);
-    //   setWind(res[0].wind.speed);
-    //   setHumidity(res[0].main.humidity);
-    //   sortAPIForcastArr(res[1].list);
-    // });
   }, []);
 
   return (

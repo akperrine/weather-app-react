@@ -1,7 +1,30 @@
-const WeatherInfo = () => {
+import "./WeatherInfo.css";
+
+const WeatherInfo = (weatherStats) => {
+  const { feelsLike, humidity, sunrise, sunset, wind, max, min } = weatherStats;
+
+  const dateTimeCreator = (unixTime) => {
+    const date = new Date(unixTime * 1000);
+    const hours = date.getHours();
+    const minutes = "0" + date.getMinutes();
+    const formatedTime = hours + ":" + minutes;
+    return formatedTime;
+  };
+  const clockSunrise = dateTimeCreator(sunrise);
+  const clockSunset = dateTimeCreator(sunset);
+
   return (
     <div className="weather-info">
-      <p>High: 70 Low: 50 sunrise: 6:00 sunset: 9:00 more information </p>
+      <ul>
+        <li>{`High of: ${max}°F`}</li>
+        <li>{`Low of: ${min}°F`}</li>
+
+        <li>{`Feels Like: ${feelsLike}°F`}</li>
+        <li>{`Humidity: ${humidity}%`}</li>
+        <li>{`Wind: ${wind} mph`}</li>
+        <li>{`Sunrise: ${clockSunrise} AM`}</li>
+        <li>{`Sunset: ${clockSunset} PM`}</li>
+      </ul>
     </div>
   );
 };

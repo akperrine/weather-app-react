@@ -3,12 +3,14 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import "./Navigation.css";
 
-const Navigation = () => {
+const Navigation = ({ searchChange }) => {
   return (
     <div>
       <nav>
-        <FontAwesomeIcon className="spy" icon={faMagnifyingGlass} />
-        <input placeholder="Search for a city" />
+        <button className="search-btn">
+          <FontAwesomeIcon className="spy" icon={faMagnifyingGlass} />
+        </button>
+        <input placeholder="Search for a city" onChange={searchChange} />
       </nav>
     </div>
   );

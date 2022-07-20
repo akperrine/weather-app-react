@@ -2,23 +2,38 @@
   box-sizing: border-box;
 }
 
+:root {
+  --linear-fade: linear-gradient(#ffffff, #b7b7b7);
+}
+
 .display-container {
+  /* position: absolute; */
+  border: 5px solid black;
+  margin: 20px;
   display: flex;
   justify-content: center;
-  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  background-image: url(./imgs/clear_sky.jpg);
+  background-color: white;
+  min-height: 100vh;
 }
 
 .city-container {
-  border: 5px solid black;
-  margin: 1px;
-  width: 100%;
-  min-height: 100vh;
+  margin: 50px;
+  width: 40%;
+  height: 200px;
+  padding: 20px, 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(44, 152, 174);
-  color: aliceblue;
+  color: black;
+  background: var(--linear-fade);
+  font-family: Futura, sans-serif;
+  box-shadow: 10px 10px 10px rgb(21, 20, 20);
+  border-radius: 10px;
+  margin-bottom: 40px;
 }
 .city-container h2 {
   font-size: 2.75rem;
@@ -31,27 +46,29 @@
 }
 
 .forcast-list {
+  position: relative;
   display: flex;
-  margin: 5px;
-  padding-left: 40px;
-  padding-right: 40px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 90%;
+  margin-bottom: 50px;
+  background-color: var(--linear-fade);
 }
 
-.forcast-container {
-  margin: 10px;
-  padding: 20px, 10px, 20px, 10px;
-  height: 175px;
-  width: 150px;
+.forcast-list .forcast-container {
+  min-height: 200px;
+  min-width: 200px;
+  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   border: 2px solid black;
+  border-radius: 10px;
+  background: var(--linear-fade);
+  box-shadow: 10px 10px 10px rgb(21, 20, 20);
 }
 
-.weather-info {
-  display: flex;
-  flex-direction: column;
-  font-size: 2rem;
+.sun {
+  height: 3rem;
 }

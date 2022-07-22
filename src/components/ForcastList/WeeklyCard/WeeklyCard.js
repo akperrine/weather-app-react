@@ -11,7 +11,6 @@ import {
 
 const WeeklyCard = ({ forcast }) => {
   const { avgTemp, gif } = forcast;
-  console.log(gif);
 
   const setIcon = (aGif) => {
     if (aGif === "Clouds") {
@@ -26,7 +25,6 @@ const WeeklyCard = ({ forcast }) => {
   };
 
   const icon = setIcon(gif);
-  console.log(icon);
   return (
     <div className="forcast-container">
       <h1>Avg Temp: {avgTemp}</h1>
